@@ -1,18 +1,15 @@
-import { Command } from 'commander';
+#!/usr/bin/env node
+import { Command } from 'commander/esm.mjs'; // eslint-disable-line
+import genDiff from '../src/index.js';
+
 const program = new Command();
 
 program
-  .name('gendiff')
+  .version('1.0.0', '-V, --version', 'output the version number')
   .description('Compares two configuration files and shows a difference.')
-
-  program
-  .option('-V, --version', 'output the version number')
-  .option('-s, --format <type>', 'output format')  
-  .argument('<filepath1>')
-  .argument('<filepath2>')
+  .option('-f, --format [type]', 'output format', 'stylish')
+  .arguments('<filepath1> <filepath2>')
   .action((filepath1, filepath2) => {
-    confirm.log(filepath1,filepath2);
-  })
-  .helpInformation('-h, --help', 'output usage information')
-
+    console.log(genDiff(filepath1, filepath2, program.opts().format));
+  });
 program.parse();

@@ -14,3 +14,4 @@ const checkFormat = (diff, format) => {
   throw new Error(`Формат не поддерживается: ${format}`);
 };
 export default checkFormat;
+
